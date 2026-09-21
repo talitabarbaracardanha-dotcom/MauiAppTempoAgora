@@ -30,8 +30,14 @@ namespace MauiAppTempoAgora.Services
                     var rascunho = JObject.Parse(json);
 
                     DateTime time = new();
-                    DateTime sunrise = time.AddSeconds((double)rascunho["sys"]["sunrise"]).ToLocalTime();
-                    DateTime sunset = time.AddSeconds((double)rascunho["sys"]["sunset"]).ToLocalTime();
+
+                    DateTime sunrise = time.AddSeconds(
+                        (double)rascunho["sys"]["sunrise"]
+                        ).ToLocalTime();
+
+                    DateTime sunset = time.AddSeconds(
+                        (double)rascunho["sys"]["sunset"]
+                        ).ToLocalTime();
 
                     t = new()
                     {
