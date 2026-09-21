@@ -1,4 +1,5 @@
-﻿using MauiAppTempoAgora.Models;
+﻿using System.Net;
+using MauiAppTempoAgora.Models;
 using Newtonsoft.Json.Linq;
 
 namespace MauiAppTempoAgora.Services
@@ -16,6 +17,11 @@ namespace MauiAppTempoAgora.Services
             using (HttpClient client = new HttpClient())
             {
                 HttpResponseMessage resp = await client.GetAsync(url);
+
+                if (resp.StatusCode ==HttpStatusCode.NotFound)
+                {
+                    throw new Exception("Cidade não encontrada.");
+                }
 
                 if(resp.IsSuccessStatusCode)
                 {
